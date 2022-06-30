@@ -1,0 +1,552 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
+    
+    
+      
+        <title>程序调用流程 - My Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="My Wiki" class="md-header__button md-logo" aria-label="My Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              程序调用流程
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="My Wiki" class="md-nav__button md-logo" aria-label="My Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    My Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cortex-m3%26m4.html" class="md-nav__link">
+        cortex-M3&M4
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#app_status_indication_poweron" class="md-nav__link">
+    示例 APP_STATUS_INDICATION_POWERON
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    函数原型及说明
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    提示音文件存储位置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-audio" class="md-nav__link">
+    app audio
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app_bt_media_manager" class="md-nav__link">
+    App_bt_media_manager模块
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audioflinger" class="md-nav__link">
+    audioflinger(音频管理器)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    提示音
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">程序调用流程</h1>
+<p>AUDIO_PROMPT_USE_DAC2_ENABLED = 1</p>
+<p>IBRT = 1</p>
+<p>定义 了</p>
+<p><strong><strong>AUDIO_QUEUE_SUPPORT</strong></strong></p>
+<p><strong>MEDIA_PLAYER_SUPPORT</strong></p>
+<p><strong>未定义 PROMPT_IN_FLASH</strong></p>
+<h2 id="app_status_indication_poweron">示例 APP_STATUS_INDICATION_POWERON</h2>
+<p><strong>app_voice_report(APP_STATUS_INDICATION_POWERON, 0) --&gt;</strong> </p>
+<p>​   <strong>app_voice_report_handler(APP_STATUS_INDICATION_POWERON, 0, true)--&gt;</strong></p>
+<p>​       media_PlayAudio_locally(id, device_id)[POWEROFF调用]  </p>
+<p>​        <strong>media_PlayAudio_standalone(AUD_ID_POWER_ON, 0) --&gt;</strong> </p>
+<h2 id="_2">函数原型及说明</h2>
+<ol>
+<li>int app_voice_report(APP_STATUS_INDICATION_T status, uint8_t device_id) </li>
+<li>int app_voice_report_handler(APP_STATUS_INDICATION_T status, uint8_t device_id, uint8_t isMerging)</li>
+<li>void media_PlayAudio_locally(AUD_ID_ENUM id, uint8_t device_id)</li>
+<li>void media_PlayAudio(AUD_ID_ENUM id,uint8_t device_id)</li>
+<li>void media_PlayAudio_standalone(AUD_ID_ENUM id, uint8_t device_id)</li>
+</ol>
+<h2 id="_3">提示音文件存储位置</h2>
+<p>Flash 数据区域，在哪里？如何烧录？如何划分？优缺点？</p>
+<h2 id="app-audio">app audio</h2>
+<p>函数的调用：app_init(void)---&gt;app_audio_open();
+app_audio_open
+（1）初始化提示音模块，调用app_prompt_list_init()完成了内存空间申请，app_prompt_list申请，app_prompt_handler_tid创建；
+（2）设置APP_MODUAL_AUDIO模块的回调app_audio_handle_process()，根据当前设置的APP_BT_SETTING_T完成音频流的开启app_bt_stream_open或关闭app_bt_stream_close处理，其内部维护了一个audio队列，依赖于宏定义 <strong>AUDIO_QUEUE_SUPPORT</strong>；</p>
+<pre><code class="language-c">enum APP_MODUAL_ID_T {
+    APP_MODUAL_KEY = 0,
+    APP_MODUAL_AUDIO,
+    APP_MODUAL_BATTERY,
+    APP_MODUAL_BT,
+    APP_MODUAL_FM,
+    APP_MODUAL_SD,
+    APP_MODUAL_LINEIN,
+    APP_MODUAL_USBHOST,
+    APP_MODUAL_USBDEVICE,
+    APP_MODUAL_WATCHDOG,
+    APP_MODUAL_AUDIO_MANAGE,
+    APP_MODUAL_ANC,
+    APP_MODUAL_VOICE_ASSIST,
+    APP_MODUAL_SMART_MIC,
+#ifdef __PC_CMD_UART__  
+    APP_MODUAL_CMD,
+#endif
+#ifdef TILE_DATAPATH
+    APP_MODUAL_TILE,
+#endif
+    APP_MODUAL_MIC,
+#ifdef VOICE_DETECTOR_EN
+    APP_MODUAL_VOICE_DETECTOR,
+#endif
+#ifdef AUDIO_HEARING_COMPSATN
+    APP_MODUAL_HEAR_COMP,
+#endif
+    APP_MODUAL_OHTER,
+
+    APP_MODUAL_NUM
+};
+
+app_set_threadhandle(APP_MODUAL_AUDIO, app_audio_handle_process);
+
+enum APP_BT_SETTING_T {
+    APP_BT_SETTING_OPEN = 0,
+    APP_BT_SETTING_CLOSE,
+    APP_BT_SETTING_SETUP,
+    APP_BT_SETTING_RESTART,
+    APP_BT_SETTING_CLOSEALL,
+    APP_BT_SETTING_CLOSEMEDIA,
+    APP_BT_SETTING_NUM,
+};
+
+typedef struct {
+    uint32_t message_id;
+    uint32_t message_ptr;
+    uint32_t message_Param0;
+    uint32_t message_Param1;
+    uint32_t message_Param2;
+} APP_MESSAGE_BODY;
+
+static int app_audio_handle_process(APP_MESSAGE_BODY *msg_body)
+
+</code></pre>
+<p>（3）bt流触发器初始化app_bt_stream_init()，创建定时器，在音乐或电话流开启时启动定时器回调app_bt_stream_trigger_timeout_cb()向模块APP_MODUAL_AUDIO发消息进入回调app_audio_handle_process完成相应操作</p>
+<pre><code class="language-c">osTimerCreate(osTimer(APP_BT_STREAM_TRIGGER_TIMEOUT), osTimerOnce, NULL);
+app_audio_sendrequest_param(APP_BT_STREAM_A2DP_SBC, (uint8_t)APP_BT_SETTING_RESTART, 0, 0)
+app_audio_sendrequest(APP_BT_STREAM_HFP_PCM, (uint8_t)APP_BT_SETTING_RESTART, 0);
+</code></pre>
+<h2 id="app_bt_media_manager">App_bt_media_manager模块</h2>
+<p>app_audio_manager_open</p>
+<p>函数内流程：</p>
+<p>（1）设置APP_MODUAL_AUDIO_MANAGE模块回调app_audio_manager_handle_process()，根据当前BT_MEDIA_MANAGER完成音乐、电话、提示音的开启bt_media_start或关闭bt_media_stop处理。</p>
+<pre><code class="language-c">enum APP_BT_MEDIA_MANAGER_ID_T {
+    APP_BT_STREAM_MANAGER_START = 0,
+    APP_BT_STREAM_MANAGER_STOP,
+    APP_BT_STREAM_MANAGER_STOP_MEDIA,
+    APP_BT_STREAM_MANAGER_UPDATE_MEDIA,
+    APP_BT_STREAM_MANAGER_SWAP_SCO,
+    APP_BT_STREAM_MANAGER_CTRL_VOLUME,
+    APP_BT_STREAM_MANAGER_TUNE_SAMPLERATE_RATIO,
+    APP_BT_STREAM_MANAGER_NUM,
+};
+
+static int app_audio_manager_handle_process(APP_MESSAGE_BODY *msg_body)
+
+</code></pre>
+<p>（2） 通过调用audio_prompt_init_handler()---&gt; memset((uint8_t *)&amp;audio_prompt_env, 0, sizeof(audio_prompt_env));将提示音AUDIO_PROMPT_ENV_T初始化为0；</p>
+<p>（3） APP_BT_SETTING_T的产生过程分音乐、电话、提示音三部分介绍</p>
+<h2 id="audioflinger">audioflinger(音频管理器)</h2>
+<ol>
+<li>主要功能？</li>
+<li>程序框架</li>
+<li></li>
+</ol>
+<p>梳理笔记记录：
+af_open 
+​   . 初始化 af_stream_cfg_t结构体
+    . 创建thread(af_thread),,并利用信号量机制完成线程同步；</p>
+<pre><code class="language-c">//pingpong machine
+enum AF_PP_T{
+    PP_PING = 0,
+    PP_PANG = 1
+};
+
+enum AUD_STREAM_USE_DEVICE_T{
+    AUD_STREAM_USE_DEVICE_NULL = 0,
+    AUD_STREAM_USE_EXT_CODEC,
+    AUD_STREAM_USE_I2S0_MASTER,
+    AUD_STREAM_USE_I2S0_SLAVE,
+    AUD_STREAM_USE_I2S1_MASTER,
+    AUD_STREAM_USE_I2S1_SLAVE,
+    AUD_STREAM_USE_TDM0_MASTER,
+    AUD_STREAM_USE_TDM0_SLAVE,
+    AUD_STREAM_USE_TDM1_MASTER,
+    AUD_STREAM_USE_TDM1_SLAVE,
+    AUD_STREAM_USE_INT_CODEC,
+    AUD_STREAM_USE_INT_CODEC2,
+    AUD_STREAM_USE_INT_SPDIF,
+    AUD_STREAM_USE_BT_PCM,
+    AUD_STREAM_USE_DPD_RX,
+    AUD_STREAM_USE_MC,
+};
+
+struct af_stream_ctl_t{
+    enum AF_PP_T pp_index;      //pingpong operate
+    uint8_t pp_cnt;             //use to count the lost signals
+    uint8_t status;             //status machine
+    enum AUD_STREAM_USE_DEVICE_T use_device;
+
+    uint32_t hdlr_intvl_ticks;
+    uint32_t prev_hdlr_time;
+    bool first_hdlr_proc;
+    bool intvl_check_en;
+};
+
+struct AF_STREAM_CONFIG_T {
+    enum AUD_SAMPRATE_T sample_rate;        // 采样率
+    enum AUD_CHANNEL_MAP_T channel_map;     // 音频通道map
+    enum AUD_CHANNEL_NUM_T channel_num;     // 通道编号
+    enum AUD_BITS_T bits;                   // 采样宽度(8\12\16\20\24\32)
+    enum AUD_STREAM_USE_DEVICE_T device;    // 音频使用设备(i2S\DMA等)
+    enum AUD_IO_PATH_T io_path;             // 音频输入来源及输出方式(SPEAKER)
+    enum AUD_DATA_ALIGN_T align;            // 数据对齐方式
+    enum AUD_FS_FIRST_EDGE_T fs_edge;       // 采样方式
+    uint16_t fs_cycles;
+    uint8_t slot_cycles;
+    bool chan_sep_buf;
+    bool sync_start;
+    //should define type
+    uint8_t vol;
+
+    AF_STREAM_HANDLER_T handler;            
+
+    uint8_t *data_ptr;
+    uint32_t data_size;
+};
+
+struct af_stream_cfg_t {
+    //used inside
+    struct af_stream_ctl_t ctl;
+
+    //dma buf parameters, RAM can be alloced in different way
+    uint8_t *dma_buf_ptr;
+    uint32_t dma_buf_size;
+
+    //store stream cfg parameters
+    struct AF_STREAM_CONFIG_T cfg;
+
+    //dma cfg parameters
+#ifdef DYNAMIC_AUDIO_BUFFER_COUNT
+    uint8_t dma_desc_cnt;
+#endif
+    struct HAL_DMA_DESC_T dma_desc[MAX_AUDIO_BUFFER_COUNT];
+    struct HAL_DMA_CH_CFG_T dma_cfg;
+
+    //callback function
+    AF_STREAM_HANDLER_T handler;
+};
+</code></pre>
+<p>线程中根据不同的信号量，调用af_thread_stream_handler对不同类型的数据流进行处理</p>
+<p>static struct af_stream_cfg_t af_stream[AUD_STREAM_ID_NUM][AUD_STREAM_NUM];
+AUD_STREAM_ID_NUM = 4 AUD_STREAM_NUM =2
+[AUD_STREAM_ID_x(0,3)][AUD_STREAM_PLAYBACK=0]
+[AUD_STREAM_ID_x(0,3)][AUD_STREAM_CAPTURE=1]</p>
+<p>这个具体怎么对应？</p>
+<h2 id="_4">提示音</h2>
+<p><strong>app_voice_report</strong></p>
+<p>函数内流程：</p>
+<p>（1） app_voice_report(APP_STATUS_INDICATION_T status, uint8_t device_id)是提示音总入口函数，APP_STATUS_INDICATION_T 枚举类型参数表示提示音序号，用来索引提示音ID  ，device_id  表示设备号，一般是0.</p>
+<pre><code class="language-c">typedef enum APP_STATUS_INDICATION_T {
+    APP_STATUS_INDICATION_POWERON = 0,
+    APP_STATUS_INDICATION_INITIAL,
+    APP_STATUS_INDICATION_PAGESCAN,
+    ...
+</code></pre>
+<p>（2）根据相关宏定义选择不同的提示音播放方式</p>
+<pre><code class="language-c">void media_PlayAudio_locally(AUD_ID_ENUM id, uint8_t device_id)//仅本地播放
+void media_PlayAudio_standalone_locally(AUD_ID_ENUM id, uint8_t device_id)//打断播放
+void media_PlayAudio(AUD_ID_ENUM id,uint8_t device_id)//混合播放
+</code></pre>
+<p>（3） 如果是从耳发送命令给对端主耳播放app_tws_let_peer_device_play_audio_prompt()-----&gt;tws_ctrl_send_cmd()，如果是主耳发送提示音任务请求app_prompt_push_request()----&gt;app_prompt_list_append(app_prompt_list, &amp;req);----&gt;osSignalSet(app_prompt_handler_tid, PROMPT_HANDLER_SIGNAL_NEW_PROMPT_REQ);</p>
+<p><strong>app_prompt_handler_thread</strong></p>
+<p>函数的调用：app_prompt_list_init()---&gt;app_prompt_handler_thread()</p>
+<p>函数内流程： </p>
+<p>（1）收到信号PROMPT_HANDLER_SIGNAL_NEW_PROMPT_REQ后,根据当前是否有正在播放的提示音以及app_prompt_list是否为空，通过调用app_prompt_refresh_list来实现相关功能。</p>
+<p>（2）收到信号PPROMPT_HANDLER_SIGNAL_CLEAR_REQ后，先清除app_prompt_list，然后混合模式下发送PROMPT_HANDLER_SIGNAL_PLAYING_COMPLETED信号停止提示音，最后通过app_audio_sendrequest(APP_PLAY_BACK_AUDIO, (uint8_t)APP_BT_SETTING_CLOSE, devId)----&gt;app_audio_handle_process()完成提示音流的关闭。</p>
+<p>（3）收到信号PROMPT_HANDLER_SIGNAL_PLAYING_COMPLETED，先标识当前没有正在播放的提示音，然后停止提示音保护定时器app_prompt_protector_timer，最后，调用app_prompt_refresh_list来实现相关功能。</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.82b56eb2.min.js"></script>
+      
+    
+  </body>
+</html>
