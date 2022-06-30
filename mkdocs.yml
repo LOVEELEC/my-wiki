@@ -2,6 +2,7 @@ site_name: My Wiki
 nav: 
     - Home: index.md
     - cortex-M3&M4: cortex-m3&m4.md
+    - BES: docs/BES/learn_mark.md
 theme:
     name: 'material'
 
